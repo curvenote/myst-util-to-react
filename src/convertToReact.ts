@@ -1,11 +1,11 @@
-import { createElement as e } from 'react';
-import { Component, NodeTypes, ReactLike } from './types';
+import React, { createElement as e } from 'react';
+import { Component, NodeTypes } from './types';
 import { GenericNode } from 'mystjs';
 
 export function toReact(
   fragment: GenericNode[],
   replacements: NodeTypes,
-): ReactLike[] | undefined {
+): React.ReactNode {
   if (fragment.length === 0) return undefined;
   return fragment.map((node) => {
     if (node.type === 'text') return node.value;
@@ -27,6 +27,6 @@ export function toReact(
 export function mystToReact(
   content: GenericNode,
   replacements: NodeTypes,
-): ReactLike[] | undefined {
+): React.ReactNode {
   return toReact(content.children ?? [], replacements);
 }

@@ -1,11 +1,9 @@
-import { ReactElement } from 'react';
+import React from 'react';
 import { GenericNode } from 'mystjs';
-
-export type ReactLike = ReactElement | string | undefined;
 
 export type Component = (
   node: GenericNode,
-  children?: ReactLike | ReactLike[],
-) => ReactLike;
+  children?: React.ReactNode,
+) => React.ReactNode;
 
 export type NodeTypes = Record<string, Component>;
