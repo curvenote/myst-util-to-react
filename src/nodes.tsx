@@ -58,7 +58,11 @@ export const defaultNodes: NodeTypes = {
   },
   list(node, children) {
     if (node.ordered) {
-      return <ol key={node.key}>{children}</ol>;
+      return (
+        <ol key={node.key} start={node.start || undefined}>
+          {children}
+        </ol>
+      );
     }
     return <ul key={node.key}>{children}</ul>;
   },
