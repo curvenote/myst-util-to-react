@@ -85,7 +85,6 @@ export const defaultNodes: NodeTypes = {
   blockquote(node, children) {
     return <blockquote key={node.key}>{children}</blockquote>;
   },
-  // iframe: IFrame,
   admonition(node, children) {
     return (
       <aside key={node.key} className={classNames('admonition', node.kind)}>
