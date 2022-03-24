@@ -1,4 +1,4 @@
-import { GenericParent } from 'mystjs';
+import type { GenericParent } from 'mystjs';
 import { useMemo } from 'react';
 import { defaultNodes } from './nodes';
 import { mystToReact } from './convertToReact';

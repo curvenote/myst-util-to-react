@@ -1,5 +1,5 @@
 import React from 'react';
-import { GenericNode } from 'mystjs';
+import type { GenericNode } from 'mystjs';
 
 export type Component = (
   node: GenericNode,

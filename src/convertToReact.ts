@@ -1,6 +1,6 @@
 import React, { createElement as e } from 'react';
 import { Component, NodeTypes } from './types';
-import { GenericNode } from 'mystjs';
+import type { GenericNode } from 'mystjs';
 
 export function toReact(
   fragment: GenericNode[],
