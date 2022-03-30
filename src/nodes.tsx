@@ -102,7 +102,7 @@ export const defaultNodes: NodeTypes = {
   thematicBreak(node) {
     return <hr key={node.key} />;
   },
-  contentReference(node, children) {
+  crossReference(node, children) {
     return (
       <a key={node.key} href={`#${node.identifier}`}>
         {children}
