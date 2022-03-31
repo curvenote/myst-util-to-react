@@ -109,6 +109,7 @@ export const defaultNodes: NodeTypes = {
       </a>
     );
   },
+  // TODO: This doesn't exist in the spec
   captionNumber(node, children) {
     return (
       <span key={node.key} className="caption-number">
@@ -123,7 +124,16 @@ export const defaultNodes: NodeTypes = {
     return <tr key={node.key}>{children}</tr>;
   },
   tableCell(node, children) {
-    return <td key={node.key}>{children}</td>;
+    const ifGreaterThanOne = (num?: number) => (num === 1 ? undefined : num);
+    return (
+      <td
+        key={node.key}
+        rowSpan={ifGreaterThanOne(node.rowspan)}
+        colSpan={ifGreaterThanOne(node.colspan)}
+      >
+        {children}
+      </td>
+    );
   },
   subscript(node, children) {
     return <sub key={node.key}>{children}</sub>;
