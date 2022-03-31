@@ -1,6 +1,6 @@
 import { createElement as e } from 'react';
 import classNames from 'classnames';
-import { NodeTypes } from './types';
+import { NodeRenderers } from './types';
 
 function getCaptionStart(kind?: string) {
   switch (kind) {
@@ -13,7 +13,7 @@ function getCaptionStart(kind?: string) {
   }
 }
 
-export const defaultNodes: NodeTypes = {
+export const defaultNodes: NodeRenderers = {
   strike(node, children) {
     return <del key={node.key}>{children}</del>;
   },
