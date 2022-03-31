@@ -125,15 +125,13 @@ export const defaultNodes: NodeTypes = {
   },
   tableCell(node, children) {
     const ifGreaterThanOne = (num?: number) => (num === 1 ? undefined : num);
-    return (
-      <td
-        key={node.key}
-        rowSpan={ifGreaterThanOne(node.rowspan)}
-        colSpan={ifGreaterThanOne(node.colspan)}
-      >
-        {children}
-      </td>
-    );
+    const attrs = {
+      key: node.key,
+      rowSpan: ifGreaterThanOne(node.rowspan),
+      colSpan: ifGreaterThanOne(node.colspan),
+    };
+    if (node.header) return <th {...attrs}>{children}</th>;
+    return <td {...attrs}>{children}</td>;
   },
   subscript(node, children) {
     return <sub key={node.key}>{children}</sub>;
