@@ -23,6 +23,13 @@ export const defaultNodes: NodeRenderers = {
   emphasis(node, children) {
     return <em key={node.key}>{children}</em>;
   },
+  underline(node, children) {
+    return (
+      <span key={node.key} style={{ textDecoration: 'underline' }}>
+        {children}
+      </span>
+    );
+  },
   inlineCode(node, children) {
     return <code key={node.key}>{children}</code>;
   },
