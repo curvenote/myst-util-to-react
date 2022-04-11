@@ -46,7 +46,7 @@ export const defaultNodes: NodeRenderers = {
   heading(node, children) {
     // TODO: Add node ID here
     const { number } = node as any;
-    const textContent = <><span style={{userSelect: 'none', marginRight: 4}}>{number}</span>{children}</>
+    const textContent = <>{number && <span style={{userSelect: 'none', marginRight: 4}}>{number}</span>}{children}</>
     return e(`h${node.depth}`, { key: node.key, id: node.key }, textContent);
   },
   break(node) {
