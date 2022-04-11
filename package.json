@@ -51,7 +51,7 @@
   },
   "dependencies": {
     "classnames": "^2.3.1",
-    "myst-spec": "^0.0.2"
+    "myst-spec": "^0.0.4"
   },
   "peerDependencies": {
     "mystjs": "^0.0.4",
