@@ -1,4 +1,4 @@
-import { createElement as e } from 'react';
+import { createElement as e, useState } from 'react';
 import classNames from 'classnames';
 import { NodeRenderers } from './types';
 
@@ -11,6 +11,55 @@ function getCaptionStart(kind?: string) {
     default:
       return 'Unknown';
   }
+}
+
+function Heading({
+  number,
+  nodeKey,
+  children,
+  depth,
+}: {
+  number: string;
+  children: React.ReactNode;
+  depth: number;
+  nodeKey: string;
+}) {
+  // TODO: this should be in css
+  const [isHover, setHover] = useState(false);
+  const textContent = (
+    <>
+      <a
+        className="section-hash"
+        href={`#${nodeKey}`}
+        aria-label="any permalink"
+        style={{
+          position: 'absolute',
+          left: 0,
+          top: 0,
+          transform: 'translateX(-100%)',
+          fontWeight: 'normal',
+          paddingRight: 4,
+          visibility: isHover ? 'visible' : 'hidden',
+        }}
+      >
+        <span>#</span>
+      </a>
+      {number && <span style={{ userSelect: 'none', marginRight: 4 }}>{number}</span>}
+      {children}
+    </>
+  );
+  return e(
+    `h${depth}`,
+    {
+      key: nodeKey,
+      id: nodeKey,
+      style: { position: 'relative' },
+      className: 'section-heading',
+      onMouseEnter: () => setHover(true),
+      onMouseLeave: () => setHover(false),
+    },
+    textContent,
+  );
 }
 
 export const defaultNodes: NodeRenderers = {
@@ -45,7 +94,12 @@ export const defaultNodes: NodeRenderers = {
   },
   heading(node, children) {
     // TODO: Add node ID here
-    return e(`h${node.depth}`, { key: node.key, id: node.key }, children);
+    const { number } = node as any;
+    return (
+      <Heading key={node.key} number={number} depth={node.depth} nodeKey={node.key}>
+        {children}
+      </Heading>
+    );
   },
   break(node) {
     return <br key={node.key} />;
