@@ -46,6 +46,7 @@ export const defaultNodes: NodeRenderers = {
   heading(node, children) {
     // TODO: Add node ID here
     const { enumerator } = node;
+    const id = node.identifier || node.key;
     const textContent = (
       <>
         {enumerator && (
@@ -54,7 +55,7 @@ export const defaultNodes: NodeRenderers = {
         {children}
       </>
     );
-    return e(`h${node.depth}`, { key: node.key, id: node.key }, textContent);
+    return e(`h${node.depth}`, { key: node.key, id }, textContent);
   },
   break(node) {
     return <br key={node.key} />;
